@@ -11,10 +11,10 @@ void initialize_cpu(struct s_cpu *cpu)
 
 void count(struct s_cpu *cpu)
 {
-    if(cpu->compteurJeu > 0)
-        cpu->compteurJeu--;
-    if(cpu->compteurSon > 0)
-        cpu->compteurSon--;
+    if(cpu->sys_counter > 0)
+        cpu->sys_counter--;
+    if(cpu->sound_counter > 0)
+        cpu->sound_counter--;
 }
 
 int load_rom(struct s_cpu *cpu, const char path[])

@@ -15,8 +15,11 @@ struct s_cpu
     Uint8 sound_counter;
     Uint16 pc;
 };
-void initialize_cpu(struct s_cpu *cpu)
-void count(struct s_cpu *cpu)
-int load_rom(struct s_cpu *cpu, const char path[])
 
-#endif MEMORY_H
+void initialize_cpu(struct s_cpu *cpu);
+
+void count(struct s_cpu *cpu);
+
+int load_rom(struct s_cpu *cpu, const char path[]);
+
+#endif

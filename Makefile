@@ -1,11 +1,11 @@
 PROJECT             = Chip8-emu
 BUILD_DIR           ?= build
 APP_BIN             = $(BUILD_DIR)/$(PROJECT)
-APP_SOURCES         = src/$(wildcard *.c)
+APP_SOURCES         = $(shell find src -name '*.c')
 APP_OBJS            = $(patsubst %.c,$(BUILD_DIR)/%.o,$(APP_SOURCES))
-COMMON_CFLAGS       = -Wall -Werror -Wextra $(sdl2-config --cflags --libs) -Iinc/
+COMMON_CFLAGS       = -Wall -Wextra $(shell pkg-config --cflags --libs sdl2) -Iinc/
 CFLAGS              += $(COMMON_CFLAGS)
-CFLAGS              += $(COMMON_CFLAGS)
+CC		    = gcc
 
 ifneq ($(V),)
   SILENCE           =
@@ -22,7 +22,7 @@ all: $(APP_BIN)
 
 $(APP_BIN): $(APP_OBJS)
 	$(SHOW_CC) $@
-	$(SILENCE)$(CC) -o $@ $(APP_OBJS)
+	$(SILENCE)$(CC) $(CFLAGS) -o $@ $(APP_OBJS)
 
 $(BUILD_DIR)/%.o: %.c
 	$(SHOW_CC) $@

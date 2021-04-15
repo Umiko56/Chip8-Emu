@@ -21,11 +21,11 @@ struct s_screen
     Uint32 pixel_width;
 };
 
-void clear_screen(struct s_screen *screen)
-int initialize_screen(struct s_screen *screen)
-void destroy_screen(struct s_screen *screen)
+void clear_screen(struct s_screen *screen);
+int initialize_screen(struct s_screen *screen);
+void destroy_screen(struct s_screen *screen);
 
-void update_screen(struct s_screen *screen)
+void update_screen(struct s_screen *screen);
 
 
-#endif GRAPHICS_H
+#endif 
