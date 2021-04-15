@@ -1,3 +1,4 @@
+green = /bin/echo -e "\n\x1b[92m\#\# $1\x1b[0m"
 PROJECT             = Chip8-emu
 BUILD_DIR           ?= build
 APP_BIN             = $(BUILD_DIR)/$(PROJECT)
@@ -17,7 +18,8 @@ SHOW_COMMAND        := @printf "%-15s%s\n"
 SHOW_CC             := $(SHOW_COMMAND) "[ $(CC) ]"
 SHOW_CLEAN          := $(SHOW_COMMAND) "[ CLEAN ]"
 
-all: $(APP_BIN)
+all: $(APP_BIN)	
+	@$(call green, "$(PROJECT) was successfully compiled")
 .PHONY: all
 
 $(APP_BIN): $(APP_OBJS)
