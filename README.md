@@ -3,10 +3,10 @@ A VERY simple Chip8 emulator
 It's totally useless but we love that (I personnaly do).
 
 ## Dependencies
-SDL2 I believe
+`libsdl2`
 
 ## Build
-Well, there's a Makefile
+`make`
 
 ## Install
 You build, then you install it, easy right ?
