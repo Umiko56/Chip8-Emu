@@ -4,8 +4,9 @@
 
 
 
-int main(void)
+int main(int argc, char **argv)
 {
+    printf("Welcome to Chip8-Emu!\n");
     struct s_emulator emulator;
     int status = -1;
     if(!initialize_emulator(&emulator))

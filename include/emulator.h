@@ -1,5 +1,5 @@
-#ifndef EMULATOR_H
-#define EMULATOR_H
+#pragma once
+
 #include <SDL2/SDL.h>
 #include "memory.h"
 #include "graphics.h"
@@ -13,7 +13,10 @@ struct s_input
 {
     SDL_bool key[SDL_NUM_SCANCODES];
     SDL_bool quit;
-    int x, y, xrel, yrel;
+    int x;
+    int y;
+    int xrel;
+    int yrel;
     int xwheel, ywheel;
     SDL_bool mouse[6];
     SDL_bool resize;
@@ -32,5 +35,3 @@ void destroy_SDL(void);
 int initialize_emulator(struct s_emulator *emulator);
 void destroy_emulator(struct s_emulator *emulator);
 void emulate(struct s_emulator *emulator);
-
-#endif 
