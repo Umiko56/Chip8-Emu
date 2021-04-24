@@ -2,11 +2,11 @@
 
 Cpu::Cpu() : instruction_pointer(0), index_register(0), stack_pointer(0)
 {
-    for (int x; x < 16; x++)
+    for (int x = 0; x < 16; x++)
     {
         general_registers[x] = 0;
     }
-    for (int x; x < 4069; x++)
+    for (int x = 0; x < 4069; x++)
     {
         ram[x] = rand();
     }
