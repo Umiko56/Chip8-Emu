@@ -1,13 +1,21 @@
 # Chip8-Emu
+
 A VERY simple Chip8 emulator
 It's totally useless but we love that (I personally do).
 
 ## Dependencies
-`libsdl2`
+
+Needs the SDL2 libraries
 
 ## Build
-`make`
+
+```
+mkdir build
+cd build || exit 1
+cmake ..
+make
+```
 
 ## Install
-You build, then you install it, easy right ?
-I might write an install target one day
+
+In the future, debian packages will be distributed
