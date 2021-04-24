@@ -9,7 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    container:
+      image: mtrath712/ubuntu-clang-cmake-sdl2:latest
     steps:
       - uses: actions/checkout@v2
       - name: make
