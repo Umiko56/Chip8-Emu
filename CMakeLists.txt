@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-enable_language(C)
+enable_language(C CXX)
 
 project("chip8-emu")
 

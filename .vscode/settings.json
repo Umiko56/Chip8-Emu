@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "*.json": "json",
+        "*.inc": "makefile",
+        "*.anim": "yaml",
+        "*.asm": "lldb.disassembly",
+        "*.s": "arm",
+        "stdlib.h": "c",
+        "stdio.h": "c",
+        "emulator.hpp": "c",
+        "cpu.hpp": "c"
+    },
+    "editor.formatOnSave": true
+}
