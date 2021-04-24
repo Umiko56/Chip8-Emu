@@ -1,0 +1,21 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: make
+        run: mkdir build && cd build && cmake .. -DCMAKE_BUILD_TYPE=Release && make
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: x86_64 Build
+          path: build/chip8-emu
