@@ -23,7 +23,7 @@ void Cpu::execute()
     instruction_pointer++;
     if (instruction_pointer > 4096)
     {
-        std::err << "IP overflow";
+        std::cerr << "IP overflow";
         return;
     }
 
