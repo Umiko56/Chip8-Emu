@@ -19,13 +19,9 @@ void Cpu::operator()()
 
 void Cpu::execute()
 {
+
     uint16_t inst = (ram[instruction_pointer] << 8 | ram[instruction_pointer + 1]);
     instruction_pointer++;
-    if (instruction_pointer > 4096)
-    {
-        std::cerr << "IP overflow";
-        return;
-    }
 
     // Unpack the instruction
     uint8_t nibbles[4];
