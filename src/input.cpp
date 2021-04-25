@@ -48,7 +48,7 @@ void Input::execute(void)
         }
         break;
     default:
-        std::cout << "Unknown event called";
+        break;
     }
 }
 
