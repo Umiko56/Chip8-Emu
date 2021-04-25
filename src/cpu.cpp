@@ -212,6 +212,10 @@ void Cpu::execute()
 
         //SNE Vx, Vy
         case 0x0:
+            if (general_registers[1] != general_registers[2])
+            {
+                instruction_pointer += 2;
+            }
             return;
 
         //Unknown
@@ -298,6 +302,7 @@ void Cpu::execute()
         case 0x1:
             switch (nibbles[3])
             {
+            //LD DT, Vx
             case 0x5:
                 delay_timer = general_registers[nibbles[1]];
                 return;
