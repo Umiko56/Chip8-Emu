@@ -92,7 +92,7 @@ void Cpu::execute()
 
     //SE Vx, Vy
     case 0x5:
-        switch (nibbles[4])
+        switch (nibbles[3])
         {
         case 0x0:
             if (nibbles[1] != nibbles[2])
