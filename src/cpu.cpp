@@ -135,15 +135,20 @@ void Cpu::execute()
 
         //OR Vx, Vy
         case 0x1:
+            general_registers[nibbles[1]] |= general_registers[nibbles[2]];
 
             return;
 
         //AND Vx, Vy
         case 0x2:
+            general_registers[nibbles[1]] &= general_registers[nibbles[2]];
+
             return;
 
         //XOR Vx, Vy
         case 0x3:
+            general_registers[nibbles[1]] ^= general_registers[nibbles[2]];
+
             return;
 
         //ADD Vx, Vy
