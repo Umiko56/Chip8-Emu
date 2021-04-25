@@ -1,0 +1,3 @@
+[submodule "contrib/chip8-test-rom"]
+	path = contrib/chip8-test-rom
+	url = https://github.com/corax89/chip8-test-rom
