@@ -11,9 +11,9 @@ class Emulator
 public:
     Emulator(char *path);
     void execute();
-    Cpu cpu;
     Input input;
     Screen screen;
+    Cpu cpu;
 };
 
 extern Emulator *emulator;

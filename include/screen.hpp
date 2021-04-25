@@ -11,7 +11,7 @@ class Screen
 public:
     Screen();
     ~Screen();
-    void drawpx(uint8_t x, uint8_t y, bool value);
+    bool drawpx(uint8_t x, uint8_t y);
     bool readpx(uint8_t x, uint8_t y);
     void execute(void);
     void clear();

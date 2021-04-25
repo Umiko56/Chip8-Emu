@@ -29,9 +29,10 @@ Screen::~Screen(void)
 {
 }
 
-void Screen::drawpx(uint8_t x, uint8_t y, bool value)
+bool Screen::drawpx(uint8_t x, uint8_t y)
 {
-    screenbuffer[x + (y * screen_width)] = value;
+    screenbuffer[x + (y * screen_width)] = !screenbuffer[x + (y * screen_width)];
+    return screenbuffer[x + (y * screen_width)];
 }
 
 bool Screen::readpx(uint8_t x, uint8_t y)
@@ -64,11 +65,8 @@ void Screen::execute(void)
 
 void Screen::clear()
 {
-    for (int x = 0; x < screen_width; x++)
+    for (int x = 0; x < screen_width * screen_height; x++)
     {
-        for (int y = 0; y < screen_height; y++)
-        {
-            drawpx(x, y, false);
-        }
+        screenbuffer[x] = false;
     }
 }
