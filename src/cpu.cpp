@@ -253,7 +253,7 @@ void Cpu::execute()
             {
                 if ((j & 0x80) == 0x80)
                 {
-                    emulator->screen.drawpx(general_registers[1] + x, general_registers[2] + y);
+                    emulator->screen.drawpx(general_registers[nibbles[1]] + x, general_registers[nibbles[2]] + y);
                 }
                 j <<= 1;
             }
