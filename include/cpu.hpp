@@ -19,7 +19,7 @@ private:
     uint16_t instruction_pointer;
     uint16_t index_register;
     uint8_t stack_pointer;
-    uint8_t general_registers[0xf];
+    uint8_t general_registers[16];
     uint8_t sound_timer;
     uint8_t delay_timer;
     uint8_t fontdata[80] = {
