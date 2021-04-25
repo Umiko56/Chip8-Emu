@@ -18,5 +18,5 @@ void Emulator::execute()
     cpu.execute();
     input.execute();
     screen.execute();
-    SDL_Delay(10);
+    SDL_Delay(5);
 }

@@ -333,6 +333,24 @@ void Cpu::execute()
             }
             return;
         case 0x3:
+            switch (nibbles[3])
+            {
+            //LD B, Vx
+            case 0x3:
+                j = general_registers[nibbles[1]];
+                ram[index_register + 2] = j % 10;
+                j /= 10;
+
+                // Tens-place
+                ram[index_register + 1] = j % 10;
+                j /= 10;
+
+                // Hundreds-place
+                ram[index_register] = j % 10;
+                return;
+            default:
+                return;
+            }
             return;
         case 0x5:
             switch (nibbles[3])
