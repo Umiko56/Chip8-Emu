@@ -14,7 +14,7 @@ Screen::Screen(void) : screen_height(32), screen_width(64)
         std::cerr << "Could not create SDL_Window instance!";
         return;
     }
-    r = SDL_CreateRenderer(w, -1, SDL_RENDERER_ACCELERATED);
+    r = SDL_CreateRenderer(w, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if (r == nullptr)
     {
         std::cerr << "Could not create SDL_Renderer instance!";
