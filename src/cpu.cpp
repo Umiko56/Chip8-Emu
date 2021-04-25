@@ -185,12 +185,14 @@ void Cpu::execute()
         }
         break;
 
-    // LD I, addr
+    //LD I, addr
     case 0xa:
         index_register = inst & 0x0fff;
         break;
 
+    //JP V0, addr
     case 0xb:
+        instruction_pointer += general_registers[1] + (inst & 0xfff);
         break;
 
     //RND Vx, byte
@@ -235,8 +237,12 @@ void Cpu::execute()
             switch (nibbles[3])
             {
             case 0x5:
+                delay_timer = general_registers[nibbles[1]];
                 break;
+
+            //LD ST, Vx
             case 0x8:
+                sound_timer = general_registers[nibbles[1]];
                 break;
 
             //ADD I, Vx
