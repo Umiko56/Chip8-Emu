@@ -13,9 +13,5 @@ public:
     bool quit;
     int x;
     int y;
-    int xrel;
-    int yrel;
-    int xwheel, ywheel;
-    bool mouse[6];
     bool resize;
 };
