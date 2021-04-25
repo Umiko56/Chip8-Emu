@@ -15,11 +15,18 @@ Cpu::Cpu() : instruction_pointer(0x200), index_register(0), stack_pointer(0)
 
 void Cpu::execute()
 {
+    int x;
+
+    std::cout << "IP: 0x" << std::hex << instruction_pointer << std::dec << "\n";
+    for (x = 0; x < 8; x++)
+    {
+        std::cout << "V" << x << ": 0x" << std::hex << general_registers[x] << std::dec << "\n";
+    }
+    std::cout << "\n";
 
     uint16_t inst = (ram[instruction_pointer] << 8 | ram[instruction_pointer + 1]);
     bool value;
     int j;
-    int x;
     int y;
     uint8_t nibbles[4];
     instruction_pointer += 2;
@@ -41,31 +48,31 @@ void Cpu::execute()
 
             // CLS
             case 0x0:
-                break;
+                return;
 
             // RET
             case 0xE:
-                break;
+                return;
 
             // Unknown
             default:
 
-                break;
+                return;
             }
 
         default:
             // SYS addr
-            break;
+            return;
         }
-        break;
+        return;
     //JP addr
     case 0x1:
         instruction_pointer = inst & 0x0fff;
-        break;
+        return;
 
     //CALL addr
     case 0x2:
-        break;
+        return;
 
     //SE Vx, byte
     case 0x3:
@@ -73,7 +80,7 @@ void Cpu::execute()
         {
             instruction_pointer += 2;
         }
-        break;
+        return;
 
     //SNE Vx, byte
     case 0x4:
@@ -81,7 +88,7 @@ void Cpu::execute()
         {
             instruction_pointer += 2;
         }
-        break;
+        return;
 
     //SE Vx, Vy
     case 0x5:
@@ -92,11 +99,11 @@ void Cpu::execute()
             {
                 instruction_pointer += 2;
             }
-            break;
+            return;
         default:
-            break;
+            return;
         }
-        break;
+        return;
 
     //LD Vx, byte
     case 0x6:
@@ -108,14 +115,14 @@ void Cpu::execute()
 
         //Unknown
         default:
-            break;
+            return;
         }
-        break;
+        return;
 
     //ADD Vx, byte
     case 0x7:
         general_registers[nibbles[1]] += inst & 0xff;
-        break;
+        return;
 
     case 0x8:
         switch (nibbles[3])
@@ -124,77 +131,77 @@ void Cpu::execute()
         // LD Vx, Vy
         case 0x0:
 
-            break;
+            return;
 
         //OR Vx, Vy
         case 0x1:
 
-            break;
+            return;
 
         //AND Vx, Vy
         case 0x2:
-            break;
+            return;
 
         //XOR Vx, Vy
         case 0x3:
-            break;
+            return;
 
         //ADD Vx, Vy
         case 0x4:
 
-            break;
+            return;
 
         //SUB Vx, Vy
         case 0x5:
-            break;
+            return;
 
         //SHR Vx {, Vy}
         case 0x6:
-            break;
+            return;
 
         //SUBN Vx, Vy
         case 0x7:
-            break;
+            return;
 
         //SHL Vx {, Vy}
         case 0xE:
-            break;
+            return;
 
         //Unknown
         default:
-            break;
+            return;
         }
 
-        break;
+        return;
     case 0x9:
         switch (nibbles[3])
         {
 
         //SNE Vx, Vy
         case 0x0:
-            break;
+            return;
 
         //Unknown
         default:
-            break;
+            return;
         }
-        break;
+        return;
 
     //LD I, addr
     case 0xa:
         index_register = inst & 0x0fff;
-        break;
+        return;
 
     //JP V0, addr
     case 0xb:
         instruction_pointer += general_registers[1] + (inst & 0xfff);
-        break;
+        return;
 
     //RND Vx, byte
     case 0xc:
 
         general_registers[nibbles[1]] = (rand() & 0xff) & (inst & 0xff);
-        break;
+        return;
 
     //DRW Vx, Vy, nibble
     case 0xd:
@@ -210,7 +217,7 @@ void Cpu::execute()
                 y++;
             }
         }
-        break;
+        return;
 
     case 0xe:
         switch (nibbles[2])
@@ -219,44 +226,44 @@ void Cpu::execute()
             switch (nibbles[3])
             {
             case 0xe:
-                break;
+                return;
             default:
-                break;
+                return;
             }
-            break;
+            return;
         default:
-            break;
+            return;
         }
-        break;
+        return;
     case 0xf:
         switch (nibbles[2])
         {
         case 0x0:
-            break;
+            return;
         case 0x1:
             switch (nibbles[3])
             {
             case 0x5:
                 delay_timer = general_registers[nibbles[1]];
-                break;
+                return;
 
             //LD ST, Vx
             case 0x8:
                 sound_timer = general_registers[nibbles[1]];
-                break;
+                return;
 
             //ADD I, Vx
             case 0xE:
                 index_register += general_registers[nibbles[1]];
-                break;
+                return;
             default:
-                break;
+                return;
             }
-            break;
+            return;
         case 0x2:
-            break;
+            return;
         case 0x3:
-            break;
+            return;
         case 0x5:
             switch (nibbles[3])
             {
@@ -267,11 +274,11 @@ void Cpu::execute()
                 {
                     ram[index_register + x] = general_registers[x];
                 }
-                break;
+                return;
             default:
-                break;
+                return;
             }
-            break;
+            return;
         case 0x6:
             switch (nibbles[3])
             {
@@ -282,23 +289,16 @@ void Cpu::execute()
                 {
                     general_registers[x] = ram[index_register + x];
                 }
-                break;
+                return;
             default:
-                break;
+                return;
             }
-            break;
+            return;
         default:
-            break;
+            return;
         }
-        break;
+        return;
     default:
-        break;
+        return;
     }
-
-    std::cout << "IP: 0x" << std::hex << instruction_pointer << std::dec << "\n";
-    for (x = 0; x < 8; x++)
-    {
-        std::cout << "V" << x << ": 0x" << std::hex << general_registers[x] << std::dec << "\n";
-    }
-    std::cout << "\n";
 }
