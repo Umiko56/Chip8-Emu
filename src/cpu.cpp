@@ -20,7 +20,7 @@ void Cpu::execute()
     std::cout << "IP: 0x" << std::hex << instruction_pointer << std::dec << "\n";
     for (x = 0; x < 8; x++)
     {
-        std::cout << "V" << x << ": 0x" << std::hex << general_registers[x] << std::dec << "\n";
+        std::cout << "V" << x << ": 0x" << std::hex << (uint16_t)general_registers[x] << std::dec << "\n";
     }
     std::cout << "\n";
 
