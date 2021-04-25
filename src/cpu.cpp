@@ -268,7 +268,7 @@ void Cpu::execute()
             {
             //SKP Vx
             case 0xe:
-                if (emulator->input.key[general_registers[1]])
+                if (emulator->input.key[general_registers[nibbles[1]]])
                 {
                     instruction_pointer += 2;
                 }
@@ -282,7 +282,7 @@ void Cpu::execute()
             {
             //SKNP Vx
             case 0x1:
-                if (!emulator->input.key[general_registers[1]])
+                if (!emulator->input.key[general_registers[nibbles[1]]])
                 {
                     instruction_pointer += 2;
                 }

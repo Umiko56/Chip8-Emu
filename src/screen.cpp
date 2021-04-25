@@ -31,6 +31,8 @@ Screen::~Screen(void)
 
 bool Screen::drawpx(uint8_t x, uint8_t y)
 {
+    x %= 64;
+    y %= 32;
     screenbuffer[x + (y * screen_width)] = !screenbuffer[x + (y * screen_width)];
     return screenbuffer[x + (y * screen_width)];
 }
