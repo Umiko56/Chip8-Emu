@@ -1,5 +1,7 @@
 #include "emulator.hpp"
 
+Emulator *emulator;
+
 int main(int argc, char **argv)
 {
     if (argc != 2)
@@ -8,9 +10,9 @@ int main(int argc, char **argv)
         return 0;
     }
 
-    Emulator emulator(argv[1]);
-    while (!emulator.input.quit)
+    emulator = new Emulator(argv[1]);
+    while (!emulator->input.quit)
     {
-        emulator();
+        emulator->execute();
     }
 }

@@ -16,3 +16,5 @@ public:
     Input input;
     Screen screen;
 };
+
+extern Emulator *emulator;

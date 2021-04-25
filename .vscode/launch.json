@@ -5,7 +5,7 @@
         "type": "cppdbg",
         "request": "launch",
         "program": "${workspaceFolder}/build/chip8-emu",
-        "args": [],
+        "args": ["./../../../MEGA/roms/chip8/Cave.ch8"],
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",
         "environment": [],

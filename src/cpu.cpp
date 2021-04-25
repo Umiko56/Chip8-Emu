@@ -1,6 +1,7 @@
 #include "cpu.hpp"
+#include "emulator.hpp"
 
-Cpu::Cpu() : instruction_pointer(0), index_register(0), stack_pointer(0)
+Cpu::Cpu() : instruction_pointer(0x200), index_register(0), stack_pointer(0)
 {
     for (int x = 0; x < 16; x++)
     {
@@ -21,6 +22,10 @@ void Cpu::execute()
 {
 
     uint16_t inst = (ram[instruction_pointer] << 8 | ram[instruction_pointer + 1]);
+    bool value;
+    int j;
+    int x;
+    int y;
     instruction_pointer += 2;
 
     // Unpack the instruction
@@ -191,6 +196,13 @@ void Cpu::execute()
 
     //DRW Vx, Vy, nibble
     case 0xd:
+        x = nibbles[1];
+        y = nibbles[2];
+        for (j = 0; j < nibbles[3]; j++)
+        {
+            value = emulator->screen.readpx(x++, y);
+            emulator->screen.drawpx(general_registers[nibbles[1]], general_registers[nibbles[2]], !value);
+        }
         break;
 
     case 0xe:
