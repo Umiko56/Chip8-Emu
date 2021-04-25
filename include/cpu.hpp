@@ -13,7 +13,7 @@ public:
     Cpu(void);
     void execute();
 
-    uint8_t ram[0xffff];
+    uint8_t ram[4096];
 
 private:
     uint16_t instruction_pointer;

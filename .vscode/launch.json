@@ -5,7 +5,7 @@
         "type": "cppdbg",
         "request": "launch",
         "program": "${workspaceFolder}/build/chip8-emu",
-        "args": ["${workspaceFolder}/contrib/chip8-test-rom/test_opcode.ch8"],
+        "args": ["../../MEGA/roms/chip8/IBM Logo.ch8"],
         "stopAtEntry": false,
         "cwd": "${workspaceFolder}",
         "environment": [],

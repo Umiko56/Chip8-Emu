@@ -51,6 +51,7 @@ void Cpu::execute()
 
             // CLS
             case 0x0:
+                emulator->screen.clear();
                 return;
 
             // RET
@@ -110,16 +111,7 @@ void Cpu::execute()
 
     //LD Vx, byte
     case 0x6:
-        switch (nibbles[3])
-        {
-        //LD Vx, byte
-        case 0:
-            general_registers[nibbles[1]] = inst & 0xff;
-
-        //Unknown
-        default:
-            return;
-        }
+        general_registers[nibbles[1]] = inst & 0xff;
         return;
 
     //ADD Vx, byte
@@ -246,8 +238,8 @@ void Cpu::execute()
 
     //DRW Vx, Vy, nibble
     case 0xd:
-        xlen = nibbles[1];
-        ylen = nibbles[2];
+        xlen = 8;
+        ylen = nibbles[3];
 
         for (int x = 0; x < xlen; x++)
         {
@@ -270,12 +262,30 @@ void Cpu::execute()
         case 0x9:
             switch (nibbles[3])
             {
+            //SKP Vx
             case 0xe:
+                if (emulator->input.key[general_registers[1]])
+                {
+                    instruction_pointer += 2;
+                }
                 return;
             default:
                 return;
             }
             return;
+        case 0xa:
+            switch (nibbles[3])
+            {
+            //SKNP Vx
+            case 0x1:
+                if (!emulator->input.key[general_registers[1]])
+                {
+                    instruction_pointer += 2;
+                }
+                return;
+            default:
+                return;
+            }
         default:
             return;
         }
