@@ -1,7 +1,16 @@
 #include "emulator.hpp"
+#include <fstream>
 
-Emulator::Emulator()
+Emulator::Emulator(char *path)
 {
+    char c;
+    uint16_t pos = 0x200;
+    std::ifstream rom_file(path, std::ios::in | std::ios::binary);
+    while (rom_file.get(c))
+    {
+        cpu.ram[pos++] = c;
+    }
+    rom_file.close();
 }
 
 void Emulator::execute()

@@ -1,9 +1,13 @@
 #include "screen.hpp"
 
-Screen::Screen(void) : screen_height(64), screen_width(32)
+Screen::Screen(void) : screen_height(32), screen_width(64)
 {
-    w = SDL_CreateWindow("Emulator", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                         screen_width * PIXEL_SIZE, screen_height * PIXEL_SIZE, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    w = SDL_CreateWindow("Umiko is adorable!",
+                         SDL_WINDOWPOS_CENTERED,
+                         SDL_WINDOWPOS_CENTERED,
+                         screen_width * PIXEL_SIZE,
+                         screen_height * PIXEL_SIZE,
+                         SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     SDL_Delay(1000);
     if (w == nullptr)
     {
@@ -28,6 +32,11 @@ Screen::~Screen(void)
 void Screen::drawpx(uint8_t x, uint8_t y, bool value)
 {
     screenbuffer[x + (y * screen_width)] = value;
+}
+
+bool Screen::readpx(uint8_t x, uint8_t y)
+{
+    return screenbuffer[x + (y * screen_width)];
 }
 
 void Screen::execute(void)

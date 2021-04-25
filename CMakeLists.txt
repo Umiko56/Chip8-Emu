@@ -7,8 +7,14 @@ project("chip8-emu")
 set(CMAKE_CXX_STANDARD 17)
 find_package(SDL2 REQUIRED)
 include_directories(SDL2Test ${SDL2_INCLUDE_DIRS})
-add_compile_options(-Wall -Wextra -Werror -ggdb -Wno-unused-variable
-                    -Wno-unused-parameter)
+add_compile_options(
+  -Og
+  -Wall
+  -Wextra
+  -Werror
+  -ggdb
+  -Wno-unused-variable
+  -Wno-unused-parameter)
 
 include_directories(include)
 

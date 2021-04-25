@@ -9,7 +9,7 @@
 class Emulator
 {
 public:
-    Emulator();
+    Emulator(char *path);
     void execute();
     void operator()();
     Cpu cpu;

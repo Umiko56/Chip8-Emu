@@ -104,16 +104,113 @@ void Cpu::execute()
         {
         //LD Vx, byte
         case 0:
-            general_registers[nibbles[1]] = general_registers[nibbles[2]];
+            general_registers[nibbles[1]] = inst & 0xff;
 
         //Unknown
         default:
             break;
         }
         break;
+
+    //ADD Vx, byte
     case 0x7:
+        general_registers[nibbles[1]] += inst & 0xff;
+        break;
+
+    case 0x8:
+        switch (nibbles[3])
+        {
+
+        // LD Vx, Vy
+        case 0x0:
+
+            break;
+
+        //OR Vx, Vy
+        case 0x1:
+
+            break;
+
+        //AND Vx, Vy
+        case 0x2:
+            break;
+
+        //XOR Vx, Vy
+        case 0x3:
+            break;
+
+        //ADD Vx, Vy
+        case 0x4:
+
+            break;
+
+        //SUB Vx, Vy
+        case 0x5:
+            break;
+
+        //SHR Vx {, Vy}
+        case 0x6:
+            break;
+
+        //SUBN Vx, Vy
+        case 0x7:
+            break;
+
+        //SHL Vx {, Vy}
+        case 0xE:
+            break;
+
+        //Unknown
+        default:
+            break;
+        }
+
+        break;
+    case 0x9:
+        switch (nibbles[3])
+        {
+
+        //SNE Vx, Vy
+        case 0x0:
+            break;
+
+        //Unknown
+        default:
+            break;
+        }
+        break;
+    case 0xa:
+        break;
+
+    case 0xb:
+        break;
+
+    case 0xc:
+
+        break;
+
+    //DRW Vx, Vy, nibble
+    case 0xd:
+        break;
+
+    case 0xe:
+        switch (nibbles[2])
+        {
+        case 0x9:
+            switch (nibbles[3])
+            {
+            case 0xe:
+                break;
+            default:
+                break;
+            }
+            break;
+        default:
+            break;
+        }
         break;
     default:
         break;
     }
+    //std::cout << "IP: 0x" << std::hex << instruction_pointer << std::dec << "\n";
 }
