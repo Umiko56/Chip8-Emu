@@ -3,7 +3,7 @@
 #define MEMORY_SIZE 4096
 #define START_ADDRESS 512
 
-#include <stdint.h>
+#include <cstdint>
 #include <iostream>
 #include <cstdlib>
 
