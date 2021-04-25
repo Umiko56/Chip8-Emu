@@ -15,6 +15,7 @@ public:
     bool readpx(uint8_t x, uint8_t y);
     void execute(void);
     void clear();
+    bool dirty;
 
 private:
     SDL_Window *w;

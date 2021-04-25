@@ -1,6 +1,6 @@
 #include "screen.hpp"
 
-Screen::Screen(void) : screen_height(32), screen_width(64)
+Screen::Screen(void) : dirty(true), screen_height(32), screen_width(64)
 {
     w = SDL_CreateWindow("Umiko is adorable!",
                          SDL_WINDOWPOS_CENTERED,
@@ -44,25 +44,29 @@ bool Screen::readpx(uint8_t x, uint8_t y)
 
 void Screen::execute(void)
 {
-    SDL_SetRenderDrawColor(r, 0, 0, 0, 255);
-    SDL_RenderClear(r);
-    SDL_SetRenderDrawColor(r, 255, 255, 255, 255);
-    for (int i = 0; i < screen_width; i++)
+    if (dirty)
     {
-        for (int j = 0; j < screen_height; j++)
+        SDL_SetRenderDrawColor(r, 0, 0, 0, 255);
+        SDL_RenderClear(r);
+        SDL_SetRenderDrawColor(r, 255, 255, 255, 255);
+        for (int i = 0; i < screen_width; i++)
         {
-            if ((screenbuffer)[i + (j * screen_width)] == true)
+            for (int j = 0; j < screen_height; j++)
             {
-                SDL_Rect pixel_rect = {
-                    PIXEL_SIZE * i,
-                    PIXEL_SIZE * j,
-                    PIXEL_SIZE,
-                    PIXEL_SIZE};
-                SDL_RenderFillRect(r, &pixel_rect);
+                if ((screenbuffer)[i + (j * screen_width)] == true)
+                {
+                    SDL_Rect pixel_rect = {
+                        PIXEL_SIZE * i,
+                        PIXEL_SIZE * j,
+                        PIXEL_SIZE,
+                        PIXEL_SIZE};
+                    SDL_RenderFillRect(r, &pixel_rect);
+                }
             }
         }
+        SDL_RenderPresent(r);
+        dirty = false;
     }
-    SDL_RenderPresent(r);
 }
 
 void Screen::clear()

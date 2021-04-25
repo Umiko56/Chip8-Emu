@@ -52,6 +52,7 @@ void Cpu::execute()
             // CLS
             case 0x0:
                 emulator->screen.clear();
+                emulator->screen.dirty = true;
                 return;
 
             // RET
@@ -231,7 +232,7 @@ void Cpu::execute()
 
     //JP V0, addr
     case 0xb:
-        instruction_pointer += general_registers[1] + (inst & 0xfff);
+        instruction_pointer += general_registers[0] + (inst & 0xfff);
         return;
 
     //RND Vx, byte
@@ -258,6 +259,7 @@ void Cpu::execute()
                 j <<= 1;
             }
         }
+        emulator->screen.dirty = true;
         return;
 
     case 0xe:
