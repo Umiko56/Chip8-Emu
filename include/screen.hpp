@@ -14,7 +14,6 @@ public:
     void drawpx(uint8_t x, uint8_t y, bool value);
     bool readpx(uint8_t x, uint8_t y);
     void execute(void);
-    void operator()();
     void clear();
 
 private:

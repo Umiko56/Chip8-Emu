@@ -9,7 +9,6 @@ class Input
 public:
     Input();
     void execute(void);
-    void operator()();
     bool key[SDL_NUM_SCANCODES];
     bool quit;
     int x;

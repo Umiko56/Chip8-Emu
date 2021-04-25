@@ -13,11 +13,6 @@ Cpu::Cpu() : instruction_pointer(0x200), index_register(0), stack_pointer(0)
     }
 }
 
-void Cpu::operator()()
-{
-    execute();
-}
-
 void Cpu::execute()
 {
 
@@ -209,6 +204,11 @@ void Cpu::execute()
         {
             value = emulator->screen.readpx(x++, y);
             emulator->screen.drawpx(general_registers[nibbles[1]], general_registers[nibbles[2]], !value);
+            if (x <= 8)
+            {
+                x = 0;
+                y++;
+            }
         }
         break;
 
@@ -258,8 +258,34 @@ void Cpu::execute()
         case 0x3:
             break;
         case 0x5:
+            switch (nibbles[3])
+            {
+
+            //LD[I], Vx
+            case 0x5:
+                for (x = 0; x < nibbles[1]; x++)
+                {
+                    ram[index_register + x] = general_registers[x];
+                }
+                break;
+            default:
+                break;
+            }
             break;
         case 0x6:
+            switch (nibbles[3])
+            {
+
+            //LD Vx, [I]
+            case 0x5:
+                for (x = 0; x < nibbles[1]; x++)
+                {
+                    general_registers[x] = ram[index_register + x];
+                }
+                break;
+            default:
+                break;
+            }
             break;
         default:
             break;
@@ -268,5 +294,11 @@ void Cpu::execute()
     default:
         break;
     }
-    //std::cout << "IP: 0x" << std::hex << instruction_pointer << std::dec << "\n";
+
+    std::cout << "IP: 0x" << std::hex << instruction_pointer << std::dec << "\n";
+    for (x = 0; x < 8; x++)
+    {
+        std::cout << "V" << x << ": 0x" << std::hex << general_registers[x] << std::dec << "\n";
+    }
+    std::cout << "\n";
 }

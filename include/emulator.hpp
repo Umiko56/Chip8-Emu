@@ -11,7 +11,6 @@ class Emulator
 public:
     Emulator(char *path);
     void execute();
-    void operator()();
     Cpu cpu;
     Input input;
     Screen screen;

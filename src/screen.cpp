@@ -7,7 +7,7 @@ Screen::Screen(void) : screen_height(32), screen_width(64)
                          SDL_WINDOWPOS_CENTERED,
                          screen_width * PIXEL_SIZE,
                          screen_height * PIXEL_SIZE,
-                         SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+                         SDL_WINDOW_SHOWN);
     SDL_Delay(1000);
     if (w == nullptr)
     {
@@ -60,11 +60,6 @@ void Screen::execute(void)
         }
     }
     SDL_RenderPresent(r);
-}
-
-void Screen::operator()()
-{
-    execute();
 }
 
 void Screen::clear()

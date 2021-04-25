@@ -11,7 +11,6 @@ class Cpu
 {
 public:
     Cpu(void);
-    void operator()();
     void execute();
 
     uint8_t ram[0xffff];

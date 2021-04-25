@@ -19,8 +19,3 @@ void Emulator::execute()
     input.execute();
     screen.execute();
 }
-
-void Emulator::operator()()
-{
-    execute();
-}

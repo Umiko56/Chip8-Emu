@@ -51,8 +51,3 @@ void Input::execute(void)
         break;
     }
 }
-
-void Input::operator()()
-{
-    execute();
-}
