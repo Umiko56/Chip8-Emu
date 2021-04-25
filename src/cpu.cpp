@@ -26,10 +26,10 @@ void Cpu::execute()
     int j;
     int x;
     int y;
+    uint8_t nibbles[4];
     instruction_pointer += 2;
 
     // Unpack the instruction
-    uint8_t nibbles[4];
     nibbles[0] = (inst & 0xf000) >> 12;
     nibbles[1] = (inst & 0x0f00) >> 8;
     nibbles[2] = (inst & 0x00f0) >> 4;
@@ -184,14 +184,19 @@ void Cpu::execute()
             break;
         }
         break;
+
+    // LD I, addr
     case 0xa:
+        index_register = inst & 0x0fff;
         break;
 
     case 0xb:
         break;
 
+    //RND Vx, byte
     case 0xc:
 
+        general_registers[nibbles[1]] = (rand() & 0xff) & (inst & 0xff);
         break;
 
     //DRW Vx, Vy, nibble
@@ -216,6 +221,39 @@ void Cpu::execute()
             default:
                 break;
             }
+            break;
+        default:
+            break;
+        }
+        break;
+    case 0xf:
+        switch (nibbles[2])
+        {
+        case 0x0:
+            break;
+        case 0x1:
+            switch (nibbles[3])
+            {
+            case 0x5:
+                break;
+            case 0x8:
+                break;
+
+            //ADD I, Vx
+            case 0xE:
+                index_register += general_registers[nibbles[1]];
+                break;
+            default:
+                break;
+            }
+            break;
+        case 0x2:
+            break;
+        case 0x3:
+            break;
+        case 0x5:
+            break;
+        case 0x6:
             break;
         default:
             break;
