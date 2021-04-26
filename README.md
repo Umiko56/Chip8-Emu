@@ -10,7 +10,7 @@ Needs the SDL2 libraries
 
 ## Build
 
-```
+```sh
 mkdir build
 cd build || exit 1
 cmake ..
