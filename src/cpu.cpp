@@ -18,12 +18,12 @@ void Cpu::execute()
 {
     int x;
 
-    std::cout << "IP: 0x" << std::hex << instruction_pointer << std::dec << "\n";
+    std::cout << "IP: 0x" << std::hex << instruction_pointer << std::dec << std::endl;
     for (x = 0; x < 0xf; x++)
     {
-        std::cout << "V" << x << ": 0x" << std::hex << (uint16_t)general_registers[x] << std::dec << "\n";
+        std::cout << "V" << x << ": 0x" << std::hex << (uint16_t)general_registers[x] << std::dec << std::endl;
     }
-    std::cout << "\n";
+    std::cout << std::endl;
 
     uint16_t inst = (ram[instruction_pointer] << 8 | ram[instruction_pointer + 1]);
     bool value;
